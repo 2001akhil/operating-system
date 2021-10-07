@@ -25,7 +25,7 @@ void main()
     {
         for(int j=0;j<num-i-1;j++)
         {
-            if(p[j].arrival_time>p[i].burst_time)
+            if(p[j].arrival_time>p[j+1].arrival_time)
             {
             temp=p[j];
             p[j]=p[j+1];
