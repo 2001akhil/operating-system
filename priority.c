@@ -1,104 +1,93 @@
-/*
-updating soon 
-*/
 #include<stdio.h>
-#include<stdlib.h>
+void priority()
+  {
+
+   int n, tot_wt=0, tot_tat=0,temp=0,pos,count=0,temp1=0,temp2=0;
+   float a=0,a_wt=0,a_tat=0;
+
+   printf("Enter the number of processes ");
+   scanf("%d",&n);
+   int p[n], bt[n], tat[n], wt[n],pr[n];
+   for(int i=0;i<n;i++){
+        p[i]=i;
+     printf("\nEnter Burst Time of P%d\t",i);
+     scanf("%d",&bt[i]);
+     printf("\nEnter priority of P%d",i);
+     scanf("%d",&pr[i]);}
+
+    for(int i=0;i<n;i++)
+
+    {
+
+      for(int j=0;j<n;j++)
+
+      {
+
+        if(pr[i]<pr[j])
+
+        {
+        temp=pr[i];
+        pr[i]=pr[j];
+        pr[j]=temp;
+       
+        temp1=bt[i];
+
+        bt[i]=bt[j];
+
+        bt[j]=temp1;
+
+       
+
+        temp2=p[i];
+
+        p[i]=p[j];
+
+        p[j]=temp2;
+
+          }
+
+     }  }  
+
+    for(int i=0;i<n;i++)
+    {
+     wt[0]=0;
+     if(i!=0)
+     {
+        wt[i]=wt[i-1]+bt[i-1];
+        a_wt=a_wt+wt[i];
+        tat[i]=wt[i]+bt[i];
+        a_tat=a_tat+tat[i];
+     }
+     else
+     {
+         tat[i]=bt[i];
+         a_tat=a_tat+tat[i];
+     }
+    }
+   
+    printf("Process\tBurst time\tTurn Around Time\tWaiting Time\tPriority\n");
+        for(int i=0;i<n;i++)
+        {
+            printf(" Process[%d]\t%d\t\t",p[i],bt[i]);
+            printf("%d\t\t%d\t\t%d\n",tat[i],wt[i],pr[i]);
+        }
+         printf("Average turn around time %f\n ",a_tat/n);
+         printf("Average waiting time %f\n ",a_wt/n);
 
 
-struct pcb {
-int pid,burst_time,arrival_time,turnarround_time,waiting_time,position;};
-void pline(int x);
-void main()
-{
-struct pcb p[10],temp;
-float avg=0.0,sum=0.0,wt=0.0,tt=0.0; 
-int num;
-printf("\nEnter the no. of process:");
-scanf("%d",&num);
-for(int i=0;i<num;i++)
-{
-printf("Enter the priority and burst time:-",i+1);
-scanf("%d\n%d",&p[i].arrival_time,&p[i].burst_time);
-p[i].pid=i+1;
-
-
-}
-/*//using sorting algorithm
-for(int i=0;i<num-1;i++)
-
-for(int j=0;num-i-1;i++)
-{
-if(p[i].arrival_time>p[j+1].arrival_time)
-
-{
-temp=p[j];
-p[j]=p[j+1];
-p[j+1]=temp;
-
-}*/
-//using sorting algorithm in the bases of priority 
-for(int i=0;i<num;i++)
-{
-p[i]=position;
-for(int j=i+1;i<num;j++)
-{
-if(p[i].)
-}
-}
-
-
-
-}
-//calculate turn arround time
-sum=0;
-for(int i=0;i<num;i++)
-{
-sum=sum+p[i].burst_time;
-
-p[i].turnarround_time=sum;
-
-//waiting
-wt=p[i].turnarround_time-p[i].burst_time;
-p[i].waiting_time=wt;
-
-}
-//calculate throughput
-for(int i=0;i<num;i++)
-{
-tt=tt+p[i].burst_time;
-
-}
-
-
-//plinr(44);
-
-printf("PID\tArrival\tBurst\n");
-//pline(44);
-for(int i=0;i<num;i++)
-{
-printf("%d\t%d\t  %d\n",p[i].pid,p[i].arrival_time,p[i].burst_time);
- sum+=p[i].turnarround_time;
-}
-printf("\nchart");//gant chart
-for(int i=0;i<num;i++)
-{
-printf("\n%d",p[i].turnarround_time);
-}
-
-avg=sum/(float)num;
-printf("\nTurn arround time is:-%f",sum);
-
-printf("\nAverage turnaround time:-%f-",avg);
-printf("\nThe waiting time is:%f",wt);
-float avgwt=wt/(float)num;
-printf("\naverage waiting time:%f",avgwt);
-float th=tt/(float)num;
-printf("trp:%f",th);
-
-
-
-}
-
-
-
-
+   
+       
+        printf("Gantt chart\n");
+        for(int i=0;i<n;i++)
+        {
+            printf("\tP%d\t",p[i]);
+        }
+        printf("\n%d\t\t",count);
+        for(int i=0;i<n;i++)
+        {
+            count=count+bt[i];
+            printf("%d\t\t",count);
+            a=count;
+        }
+ 
+  }
